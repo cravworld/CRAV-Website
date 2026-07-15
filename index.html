@@ -21,6 +21,7 @@
     --line:rgba(185,189,230,.16);
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html,body{overflow-x:hidden}
   body{
     background:
       radial-gradient(ellipse 80% 50% at 80% 0%, rgba(43,54,217,.40), transparent 60%),
@@ -37,7 +38,7 @@
     text-transform:uppercase;letter-spacing:-.01em;line-height:.95;
   }
   .mono{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
-  .glitch{position:relative;display:inline-block}
+  .glitch{position:relative;display:inline-block;overflow:hidden}
   .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;z-index:-1}
   .glitch::before{color:var(--cyan);transform:translate(-3px,2px)}
   .glitch::after{color:var(--magenta);transform:translate(3px,-2px)}
@@ -103,6 +104,43 @@
   footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mist);font-size:.82rem}
   .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   :is(a,button,input,textarea):focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+  @media(max-width:720px){
+    h1{font-size:clamp(2.7rem,10vw,4.6rem)}
+    .sub{font-size:1rem;max-width:52ch}
+  }
+
+  @media(max-width:560px){
+    header{padding:72px 0 56px}
+    section{padding:52px 0}
+    .wrap{padding:0 20px}
+    .brand{gap:10px;margin-bottom:34px}
+    .brand img{width:38px;height:38px}
+    .logo{font-size:1.15rem}
+    h1{font-size:clamp(2.45rem,15vw,3.7rem);max-width:100%}
+    .sub{margin-top:20px;max-width:none}
+    .notify{display:grid;gap:10px;max-width:none}
+    .notify input,.notify .btn{min-width:0;width:100%}
+    .sec-label{margin-bottom:20px}
+    .programs{gap:12px}
+    .prog{padding:22px 18px}
+    .prog h3{font-size:1.2rem}
+    .enquiry h2{font-size:clamp(1.7rem,9vw,2.4rem);margin-bottom:22px}
+    form.enq{max-width:none}
+    .row2{gap:10px}
+    footer{padding:24px 0}
+    .foot{display:grid;gap:8px}
+  }
+
+  @media(max-width:360px){
+    .wrap{padding:0 16px}
+    header{padding:64px 0 48px}
+    h1{font-size:clamp(2.25rem,16vw,3.1rem)}
+    .notify input,.notify .btn,.enq input,.enq textarea,.enq .btn{font-size:.9rem}
+    .prog{padding:20px 16px}
+    .prog h3{font-size:1.1rem}
+    .foot span{word-break:break-word}
+  }
 </style>
 </head>
 <body>

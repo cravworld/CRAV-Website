@@ -1,23 +1,59 @@
 # CRAV Website
 
-Static landing page for CRAV with a Vercel serverless contact endpoint.
+Official landing page for CRAV, a creator-tech foundry based in Kerala. The site is a polished static homepage with a lightweight serverless contact endpoint for launch-list requests and enquiries.
+
+## What this site does
+
+- Introduces CRAV and its creator-tech positioning
+- Highlights the first set of launch programs
+- Collects launch-list signups and enquiries through the website
+- Is ready to deploy directly on Vercel from the repository root
+
+## Tech Stack
+
+- Plain HTML, CSS, and vanilla JavaScript
+- Vercel serverless function for contact submissions
+- Resend for email delivery
+
+## Repository Structure
+
+- `index.html` - main public landing page
+- `api/contact.js` - serverless contact endpoint used by the forms
+- `crav-logo.png` - logo used in the site header
+- `vercel.json` - Vercel routing settings
+- `.env.example` - sample local environment variables
+- `.env.local` - local-only environment values, not committed
+
+## Local Setup
+
+1. Copy `.env.example` to `.env.local`.
+2. Replace the placeholder values with your real Resend and contact details.
+3. Open `index.html` in a browser for design review, or run the project through Vercel for end-to-end form testing.
+
+## Environment Variables
+
+The contact form requires these values in Vercel and in your local `.env.local` file:
+
+- `CONTACT_TO` - destination inbox for form submissions
+- `CONTACT_FROM` - verified sender address in Resend
+- `RESEND_API_KEY` - Resend API key
+
+Example values are documented in `.env.example`.
 
 ## Deploy to Vercel
 
-1. Push this folder to a Git repository.
-2. Import the repo in Vercel.
-3. Set these environment variables in Vercel:
-   - `CONTACT_TO` - destination inbox for form submissions
-   - `CONTACT_FROM` - verified sender address in Resend
-   - `RESEND_API_KEY` - Resend API key
+1. Push the repository to GitHub.
+2. Import the repo into Vercel.
+3. Add the environment variables listed above in the Vercel project settings.
 4. Deploy with the default settings.
 
-## Local preview
+## Contact Form Behavior
 
-Copy `.env.example` to `.env.local`, fill in the real values, and then open `index.html` for design review. The contact form only works after the `/api/contact` function is deployed and the Resend variables are configured.
+- The two forms on the page send JSON to `/api/contact`.
+- A honeypot field is included to reduce basic spam.
+- If the contact settings are missing, the function returns an error instead of silently failing.
 
-## Files
+## Notes
 
-- `index.html` - live site entry point
-- `api/contact.js` - email submission endpoint
-- `vercel.json` - Vercel routing settings
+- The original prototype file is kept as `crav-website.html` for reference.
+- The live deploy entry point is `index.html` at the repository root.
