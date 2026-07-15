@@ -1,0 +1,9 @@
+{
+  "name": "crav-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "CRAV landing page ready for Vercel deployment.",
+  "dependencies": {
+    "nodemailer": "9.0.3"
+  }
+}
