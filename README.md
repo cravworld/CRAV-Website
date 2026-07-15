@@ -14,7 +14,7 @@ Static landing page for CRAV with a Vercel serverless contact endpoint.
 
 ## Local preview
 
-You can open `index.html` directly for design review, but the contact form only works after the `/api/contact` function is deployed and the Resend variables are configured.
+Copy `.env.example` to `.env.local`, fill in the real values, and then open `index.html` for design review. The contact form only works after the `/api/contact` function is deployed and the Resend variables are configured.
 
 ## Files
 
