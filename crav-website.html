@@ -47,6 +47,25 @@
   header{padding:96px 0 72px;text-align:left}
   .logo{font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;font-size:1.4rem;margin-bottom:56px;display:block}
   h1{font-size:clamp(3rem,9vw,6.5rem);max-width:12ch}
+  @media(max-width:560px){
+    header{padding:72px 0 56px}
+    section{padding:52px 0}
+    .wrap{padding:0 20px}
+    .logo{font-size:1.15rem;margin-bottom:34px}
+    h1{display:block;width:100%;max-width:none;font-size:clamp(1.65rem,9vw,2.45rem);line-height:.9;text-wrap:balance}
+    .sub{margin-top:20px;max-width:none}
+    .notify{display:grid;gap:10px;max-width:none}
+    .notify input,.notify .btn{min-width:0;width:100%}
+    .sec-label{margin-bottom:20px}
+    .programs{gap:12px}
+    .prog{padding:22px 18px}
+    .prog h3{font-size:1.2rem}
+    .enquiry h2{font-size:clamp(1.7rem,9vw,2.4rem);margin-bottom:22px}
+    form.enq{max-width:none}
+    .row2{gap:10px}
+    footer{padding:24px 0}
+    .foot{display:grid;gap:8px}
+  }
   .sub{margin-top:28px;max-width:560px;color:var(--mist);font-size:1.1rem}
   .sub b{color:#fff}
 
