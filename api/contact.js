@@ -1,5 +1,3 @@
-const nodemailer = require("nodemailer");
-
 const escapeHtml = (value) =>
   String(value)
     .replace(/&/g, "&amp;")
@@ -7,26 +5,6 @@ const escapeHtml = (value) =>
     .replace(/>/g, "&gt;")
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#39;");
-
-const makeTransport = () => {
-  const host = process.env.SMTP_HOST;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-
-  if (!host || !user || !pass) {
-    throw new Error("SMTP is not configured.");
-  }
-
-  return nodemailer.createTransport({
-    host,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: String(process.env.SMTP_SECURE || "false") === "true",
-    auth: {
-      user,
-      pass,
-    },
-  });
-};
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -38,14 +16,19 @@ module.exports = async function handler(req, res) {
   try {
     const data = typeof req.body === "string" ? JSON.parse(req.body) : (req.body || {});
     const to = process.env.CONTACT_TO;
-    const from = process.env.CONTACT_FROM || process.env.SMTP_USER;
+    const from = process.env.CONTACT_FROM;
 
-    if (!to || !from) {
+    if (!to || !from || !process.env.RESEND_API_KEY) {
       res.statusCode = 500;
       return res.end(JSON.stringify({ error: "Contact settings are missing." }));
     }
 
-    const transport = makeTransport();
+    if (data.honeypot) {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      return res.end(JSON.stringify({ ok: true }));
+    }
+
     const type = data.type === "notify" ? "notify" : "enquiry";
     const subject =
       type === "notify"
@@ -72,14 +55,26 @@ module.exports = async function handler(req, res) {
         ? `<h2>Launch-list request</h2><p><strong>Email:</strong> ${escapeHtml(data.email || "")}</p><p><strong>Source:</strong> ${escapeHtml(data.source || "website")}</p>`
         : `<h2>Enquiry</h2><p><strong>Name:</strong> ${escapeHtml(data.name || "")}</p><p><strong>Phone:</strong> ${escapeHtml(data.phone || "")}</p><p><strong>Email:</strong> ${escapeHtml(data.email || "")}</p><p><strong>Message:</strong><br>${escapeHtml(data.message || "").replace(/\n/g, "<br>")}</p><p><strong>Source:</strong> ${escapeHtml(data.source || "website")}</p>`;
 
-    await transport.sendMail({
-      from,
-      to,
-      subject,
-      text: plainText,
-      html,
-      replyTo: data.email || undefined,
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        subject,
+        text: plainText,
+        html,
+        reply_to: data.email || undefined,
+      }),
     });
+
+    if (!resendResponse.ok) {
+      const errorBody = await resendResponse.text();
+      throw new Error(errorBody || "Unable to send message.");
+    }
 
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");

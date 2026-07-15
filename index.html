@@ -69,6 +69,7 @@
   .btn:hover{background:var(--blue-bright)}
   .btn:active{transform:scale(.98)}
   .msg{margin-top:12px;font-size:.85rem;color:var(--cyan);min-height:1.2em}
+  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
 
   section{padding:64px 0}
   .sec-label{color:var(--cyan);margin-bottom:26px;display:flex;align-items:center;gap:12px}
@@ -109,13 +110,14 @@
 <header id="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="CRAV home">
-      <img src="./CRAV%20Logo.PNG" alt="CRAV logo">
+      <img src="./crav-logo.png" alt="CRAV logo">
       <span class="logo">CRAV</span>
     </a>
     <h1 class="display glitch" data-text="For the ones who crav.">For the ones who&nbsp;crav.</h1>
     <p class="sub"><b>India's first Creator-Tech Foundry.</b> Turning creators and builders into creative technologists, IP owners and founders in animation, filmmaking, VFX and gaming.</p>
     <form class="notify" id="notifyForm">
       <input type="email" id="notifyEmail" placeholder="your@email.com" required aria-label="Email address">
+      <input type="text" id="notifyHoneypot" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
       <button class="btn" type="submit">Get notified</button>
     </form>
     <p class="msg" id="notifyMsg"></p>
@@ -144,6 +146,7 @@
         <input type="tel" id="enqPhone" placeholder="Phone / WhatsApp" aria-label="Phone">
       </div>
       <input type="email" id="enqEmail" placeholder="Email" required aria-label="Email">
+      <input type="text" id="enqHoneypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
       <textarea id="enqMsg" placeholder="What do you build? Which program are you interested in?" aria-label="Message"></textarea>
       <button class="btn" type="submit">Send enquiry</button>
     </form>
@@ -182,7 +185,8 @@
   document.getElementById("notifyForm").addEventListener("submit", async function(e){
     e.preventDefault();
     const email = document.getElementById("notifyEmail").value.trim();
-    if(!email) return;
+    const honeypot = document.getElementById("notifyHoneypot").value.trim();
+    if(!email || honeypot) return;
 
     try {
       await submitToApi(
@@ -190,6 +194,7 @@
         {
           type: "notify",
           email,
+          honeypot,
           source: "website",
         },
         document.getElementById("notifyMsg"),
@@ -207,6 +212,8 @@
     const phone = document.getElementById("enqPhone").value.trim();
     const email = document.getElementById("enqEmail").value.trim();
     const msg = document.getElementById("enqMsg").value.trim();
+    const honeypot = document.getElementById("enqHoneypot").value.trim();
+    if(honeypot) return;
 
     try {
       await submitToApi(
@@ -217,6 +224,7 @@
           phone,
           email,
           message: msg,
+          honeypot,
           source: "website",
         },
         document.getElementById("enqStatus"),
