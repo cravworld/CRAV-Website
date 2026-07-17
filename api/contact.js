@@ -82,6 +82,12 @@ const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 const requestLog = new Map();
 
+// Sequential per-instance counter so each email subject is guaranteed unique
+// even for two submissions in the same millisecond. Resets on cold start,
+// so it's not a lifetime-global sequence — just enough to stop mail clients
+// from thread-grouping identical subjects.
+let submissionCounter = 0;
+
 function isRateLimited(ip) {
   const now = Date.now();
   const timestamps = (requestLog.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
@@ -154,11 +160,9 @@ module.exports = async function handler(req, res) {
     }
 
     const type = data.type === "notify" ? "notify" : "enquiry";
-    // Include a per-submission timestamp + short random tag so mail clients
+    // Include a per-submission timestamp + sequence number so mail clients
     // (Gmail especially) don't group every notify/enquiry email into a
-    // single thread just because the subject text is otherwise identical —
-    // the timestamp alone isn't enough since two submissions can land in
-    // the same second.
+    // single thread just because the subject text is otherwise identical.
     const submittedAt = new Date().toLocaleString("en-IN", {
       timeZone: "Asia/Kolkata",
       day: "numeric",
@@ -168,11 +172,11 @@ module.exports = async function handler(req, res) {
       second: "2-digit",
       hour12: true,
     });
-    const uniqueTag = Math.random().toString(36).slice(2, 6);
+    submissionCounter += 1;
     const subject =
       type === "notify"
-        ? `CRAV website: new launch-list request (${submittedAt} · ${uniqueTag})`
-        : `CRAV website: enquiry from ${data.name || "Unknown"} (${submittedAt} · ${uniqueTag})`;
+        ? `CRAV website: new launch-list request (${submittedAt} · #${submissionCounter})`
+        : `CRAV website: enquiry from ${data.name || "Unknown"} (${submittedAt} · #${submissionCounter})`;
 
     const plainText =
       type === "notify"
