@@ -19,10 +19,9 @@ Official landing page for CRAV, a creator-tech foundry based in Kerala. The site
 
 - `index.html` - main public landing page
 - `api/contact.js` - serverless contact endpoint used by the forms
-- `crav-logo.png` - favicon / apple-touch-icon source (light mode)
+- `crav-logo.png` - favicon / apple-touch-icon source (light mode), also used as the social share preview image
 - `assets/crav-logo-white.png` - header logo mark (dark background variant)
 - `assets/favicon-dark.png` - favicon used in dark mode
-- `assets/og-image.png` - social share preview image
 - `robots.txt`, `sitemap.xml` - basic SEO crawling files
 - `vercel.json` - Vercel routing and security header settings
 - `.env.example` - sample local environment variables
