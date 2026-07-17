@@ -8,13 +8,44 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#04040F" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#04040F">
-<link rel="icon" type="image/png" href="/crav-logo.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="/crav-logo.png">
-<link rel="apple-touch-icon" href="/crav-logo.png">
+<link rel="canonical" href="https://www.crav.world/">
+<link rel="icon" type="image/png" href="crav-logo.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="crav-logo.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CRAV">
+<meta property="og:title" content="CRAV — India's Creator-Tech Foundry">
+<meta property="og:description" content="India's first Creator-Tech Foundry. Turning creators and builders into creative technologists, IP owners and founders in animation, filmmaking, VFX and gaming.">
+<meta property="og:url" content="https://www.crav.world/">
+<meta property="og:image" content="https://www.crav.world/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CRAV — India's Creator-Tech Foundry">
+<meta name="twitter:description" content="India's first Creator-Tech Foundry. Turning creators and builders into creative technologists, IP owners and founders in animation, filmmaking, VFX and gaming.">
+<meta name="twitter:image" content="https://www.crav.world/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;1,800;1,900&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CRAV",
+  "url": "https://www.crav.world/",
+  "logo": "https://www.crav.world/crav-logo.png",
+  "description": "India's first Creator-Tech Foundry, turning creators and builders into creative technologists, IP owners and founders in animation, filmmaking, VFX and gaming.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "20, 6th Cross Rd, Giringar Housing Colony, Giri Nagar Housing Society, Giri Nagar, Kadavanthra",
+    "addressLocality": "Ernakulam",
+    "addressRegion": "Kerala",
+    "postalCode": "682020",
+    "addressCountry": "IN"
+  }
+}
+</script>
 <style>
   :root{
     --ink:#04040F;
@@ -47,14 +78,13 @@
   .mono{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
   .glitch{position:relative;display:inline-block;overflow:hidden}
   .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;z-index:-1}
-  .glitch::before{color:var(--cyan);transform:translate(-3px,2px)}
-  .glitch::after{color:var(--magenta);transform:translate(3px,-2px)}
+  .glitch::before{color:var(--cyan);transform:translate(-0.028em,0.019em)}
+  .glitch::after{color:var(--magenta);transform:translate(0.028em,-0.019em)}
   .wrap{max-width:880px;margin:0 auto;padding:0 24px}
 
   header{padding:96px 0 72px;text-align:left}
-  .brand{display:inline-flex;align-items:center;gap:14px;margin-bottom:56px;text-decoration:none;color:#fff}
-  .brand img{width:44px;height:44px;object-fit:contain;display:block;filter:drop-shadow(0 0 18px rgba(69,83,255,.35))}
-  .logo{font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;font-size:1.4rem;display:block;line-height:1}
+  .brand{display:inline-flex;align-items:center;margin-bottom:56px;text-decoration:none;color:#fff}
+  .brand img{height:34px;width:auto;display:block;filter:drop-shadow(0 0 18px rgba(69,83,255,.35))}
   h1{font-size:clamp(3rem,9vw,6.5rem);max-width:12ch}
   .sub{margin-top:28px;max-width:560px;color:var(--mist);font-size:1.1rem}
   .sub b{color:#fff}
@@ -108,9 +138,32 @@
   @media(max-width:560px){.row2{grid-template-columns:1fr}}
   textarea{resize:vertical;min-height:110px}
 
+  .privacy-note{margin-top:14px;color:var(--mist);font-size:.78rem;max-width:480px}
   footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mist);font-size:.82rem}
   .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .foot a{color:var(--mist);text-decoration:underline}
+  .foot a:hover{color:#fff}
+  .socials{display:flex;align-items:center;gap:14px}
+  .socials a{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:50%;color:#fff;
+    background:linear-gradient(135deg,var(--blue),var(--navy));border:1px solid var(--line);
+    text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;
+  }
+  .socials a:hover,.socials a:focus-visible{
+    transform:translateY(-3px);
+    border-color:var(--blue-bright);
+    box-shadow:0 8px 22px rgba(69,83,255,.45);
+  }
   :is(a,button,input,textarea):focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+  .skip-link{
+    position:absolute;left:16px;top:-60px;z-index:100;
+    background:var(--blue);color:#fff;padding:12px 20px;border-radius:4px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.9rem;
+    text-decoration:none;transition:top .2s;
+  }
+  .skip-link:focus{top:16px}
 
   @media(max-width:720px){
     h1{font-size:clamp(2.7rem,10vw,4.6rem)}
@@ -121,9 +174,8 @@
     header{padding:72px 0 56px}
     section{padding:52px 0}
     .wrap{padding:0 20px}
-    .brand{gap:10px;margin-bottom:34px}
-    .brand img{width:38px;height:38px}
-    .logo{font-size:1.15rem}
+    .brand{margin-bottom:34px}
+    .brand img{height:28px}
     h1{display:block;width:100%;max-width:none;font-size:clamp(1.95rem,10vw,2.75rem);line-height:.9;text-wrap:balance}
     .sub{margin-top:20px;max-width:none}
     .notify{display:grid;gap:10px;max-width:none}
@@ -152,24 +204,25 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header id="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="CRAV home">
-      <img src="./crav-logo.png" alt="CRAV logo">
-      <span class="logo">CRAV</span>
+      <img src="assets/crav-logo-white.png" alt="CRAV">
     </a>
-    <h1 class="display glitch" data-text="For the ones who crav.">For the ones who&nbsp;crav.</h1>
+    <h1 class="display glitch" data-text="For the ones who&nbsp;crav.">For the ones who&nbsp;crav.</h1>
     <p class="sub"><b>India's first Creator-Tech Foundry.</b> Turning creators and builders into creative technologists, IP owners and founders in animation, filmmaking, VFX and gaming.</p>
     <form class="notify" id="notifyForm">
       <input type="email" id="notifyEmail" placeholder="your@email.com" required aria-label="Email address">
-      <input type="text" id="notifyHoneypot" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
+      <input type="text" id="notifyHoneypot" name="hp_confirm" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
       <button class="btn" type="submit">Get notified</button>
     </form>
-    <p class="msg" id="notifyMsg"></p>
+    <p class="msg" id="notifyMsg" role="status" aria-live="polite"></p>
   </div>
 </header>
 
-<section>
+<section id="main">
   <div class="wrap">
     <p class="sec-label mono">Programs launching soon</p>
     <div class="programs">
@@ -191,40 +244,57 @@
         <input type="tel" id="enqPhone" placeholder="Phone / WhatsApp" aria-label="Phone">
       </div>
       <input type="email" id="enqEmail" placeholder="Email" required aria-label="Email">
-      <input type="text" id="enqHoneypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
+      <input type="text" id="enqHoneypot" name="hp_confirm2" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
       <textarea id="enqMsg" placeholder="What do you build? Which program are you interested in?" aria-label="Message"></textarea>
       <button class="btn" type="submit">Send enquiry</button>
     </form>
-    <p class="msg" id="enqStatus"></p>
+    <p class="msg" id="enqStatus" role="status" aria-live="polite"></p>
+    <p class="privacy-note">We only use these details to respond to your enquiry — they're never shared with third parties.</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
-    <span>CRAV HQ, 20, 6th Cross Rd, Giringar Housing Colony, Giri Nagar Housing Society, Giri Nagar, Kadavanthra, Ernakulam, Kerala 682020</span>
+    <span>CRAV HQ, 20, 6th Cross Rd, Giringar Housing Colony, Giri Nagar Housing Society, Giri Nagar, Kadavanthra, Ernakulam, Kerala 682020 · <a href="mailto:projects@crav.world">projects@crav.world</a></span>
+    <div class="socials">
+      <a href="https://www.instagram.com/crav_world/" target="_blank" rel="noopener noreferrer" aria-label="CRAV on Instagram">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .2 2.4.4.6.2 1 .5 1.4 1 .4.4.7.8 1 1.4.2.4.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 2-.4 2.4-.2.6-.5 1-1 1.4-.4.4-.8.7-1.4 1-.4.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.2-2.4-.4-.6-.2-1-.5-1.4-1-.4-.4-.7-.8-1-1.4-.2-.4-.3-1.2-.4-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-2 .4-2.4.2-.6.5-1 1-1.4.4-.4.8-.7 1.4-1 .4-.2 1.2-.3 2.4-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-2 .3-.5.2-.8.4-1.2.8-.4.4-.6.7-.8 1.2-.1.4-.3 1-.3 2-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.3 2 .2.5.4.8.8 1.2.4.4.7.6 1.2.8.4.1 1 .3 2 .3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 2-.3.5-.2.8-.4 1.2-.8.4-.4.6-.7.8-1.2.1-.4.3-1 .3-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.3-2-.2-.5-.4-.8-.8-1.2-.4-.4-.7-.6-1.2-.8-.4-.1-1-.3-2-.3-1.2-.1-1.6-.1-4.7-.1zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.4-2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/crav-world/" target="_blank" rel="noopener noreferrer" aria-label="CRAV on LinkedIn">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20.4 3H3.6a.6.6 0 0 0-.6.6v16.8a.6.6 0 0 0 .6.6h16.8a.6.6 0 0 0 .6-.6V3.6a.6.6 0 0 0-.6-.6zM8.3 18.3H5.7V9.9h2.6v8.4zM7 8.8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11.3 9.5h-2.6v-4.4c0-1-.3-1.7-1.3-1.7-.7 0-1.1.5-1.3 1-.1.1-.1.4-.1.6v4.5h-2.6s.1-7.3 0-8.4h2.6v1.2c.3-.5 1-1.3 2.4-1.3 1.7 0 3 1.1 3 3.6v4.9z"/></svg>
+      </a>
+    </div>
     <span class="mono">Creators crave more.</span>
   </div>
 </footer>
 
 <script>
+  const pageLoadedAt = Date.now();
+
   const submitToApi = async (form, payload, statusNode, successMessage) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
     statusNode.textContent = "Sending...";
     statusNode.style.color = "var(--mist)";
+    if (submitBtn) submitBtn.disabled = true;
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(data.error || "Something went wrong.");
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      form.reset();
+      statusNode.textContent = successMessage;
+      statusNode.style.color = "var(--cyan)";
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
-
-    form.reset();
-    statusNode.textContent = successMessage;
-    statusNode.style.color = "var(--cyan)";
   };
 
   document.getElementById("notifyForm").addEventListener("submit", async function(e){
@@ -240,6 +310,7 @@
           type: "notify",
           email,
           honeypot,
+          elapsedMs: Date.now() - pageLoadedAt,
           source: "website",
         },
         document.getElementById("notifyMsg"),
@@ -270,6 +341,7 @@
           email,
           message: msg,
           honeypot,
+          elapsedMs: Date.now() - pageLoadedAt,
           source: "website",
         },
         document.getElementById("enqStatus"),
