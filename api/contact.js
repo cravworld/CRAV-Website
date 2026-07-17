@@ -154,10 +154,25 @@ module.exports = async function handler(req, res) {
     }
 
     const type = data.type === "notify" ? "notify" : "enquiry";
+    // Include a per-submission timestamp + short random tag so mail clients
+    // (Gmail especially) don't group every notify/enquiry email into a
+    // single thread just because the subject text is otherwise identical —
+    // the timestamp alone isn't enough since two submissions can land in
+    // the same second.
+    const submittedAt = new Date().toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "numeric",
+      month: "short",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+    const uniqueTag = Math.random().toString(36).slice(2, 6);
     const subject =
       type === "notify"
-        ? "CRAV website: new launch-list request"
-        : `CRAV website: enquiry from ${data.name || "Unknown"}`;
+        ? `CRAV website: new launch-list request (${submittedAt} · ${uniqueTag})`
+        : `CRAV website: enquiry from ${data.name || "Unknown"} (${submittedAt} · ${uniqueTag})`;
 
     const plainText =
       type === "notify"
