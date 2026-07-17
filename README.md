@@ -19,8 +19,12 @@ Official landing page for CRAV, a creator-tech foundry based in Kerala. The site
 
 - `index.html` - main public landing page
 - `api/contact.js` - serverless contact endpoint used by the forms
-- `crav-logo.png` - logo used in the site header
-- `vercel.json` - Vercel routing settings
+- `crav-logo.png` - favicon / apple-touch-icon source (light mode)
+- `assets/crav-logo-white.png` - header logo mark (dark background variant)
+- `assets/favicon-dark.png` - favicon used in dark mode
+- `assets/og-image.png` - social share preview image
+- `robots.txt`, `sitemap.xml` - basic SEO crawling files
+- `vercel.json` - Vercel routing and security header settings
 - `.env.example` - sample local environment variables
 - `.env.local` - local-only environment values, not committed
 
@@ -55,5 +59,4 @@ Example values are documented in `.env.example`.
 
 ## Notes
 
-- The original prototype file is kept as `crav-website.html` for reference.
 - The live deploy entry point is `index.html` at the repository root.
