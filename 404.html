@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — CRAV</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="crav-logo.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="crav-logo.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;1,800;1,900&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#04040F;
+    --blue:#2B36D9;
+    --blue-bright:#4653FF;
+    --mist:#B9BDE6;
+    --cyan:#35E6E0;
+    --magenta:#FF3DD8;
+    --line:rgba(185,189,230,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{overflow-x:hidden}
+  body{
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 0%, rgba(43,54,217,.40), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 5% 100%, rgba(43,54,217,.25), transparent 60%),
+      var(--ink);
+    color:#fff;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:17px;line-height:1.6;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  ::selection{background:var(--blue);color:#fff}
+  .display{
+    font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;
+    text-transform:uppercase;letter-spacing:-.01em;line-height:.95;
+  }
+  .mono{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
+  .glitch{position:relative;display:inline-block;overflow:hidden}
+  .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;z-index:-1}
+  .glitch::before{color:var(--cyan);transform:translate(-0.028em,0.019em)}
+  .glitch::after{color:var(--magenta);transform:translate(0.028em,-0.019em)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;width:100%}
+
+  main{flex:1;display:flex;align-items:center}
+  .content{padding:80px 0}
+  .brand{display:inline-flex;align-items:center;margin-bottom:48px;text-decoration:none;color:#fff}
+  .brand img{height:34px;width:auto;display:block;filter:drop-shadow(0 0 18px rgba(69,83,255,.35))}
+  .code{font-size:clamp(4rem,16vw,9rem)}
+  h1{font-size:clamp(1.7rem,5vw,2.6rem);margin-top:8px;max-width:14ch}
+  .sub{margin-top:20px;max-width:480px;color:var(--mist);font-size:1.05rem}
+  .actions{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;
+    background:var(--blue);color:#fff;border:none;border-radius:4px;
+    padding:14px 28px;cursor:pointer;transition:background .2s,transform .15s;
+    text-decoration:none;display:inline-block;
+  }
+  .btn:hover{background:var(--blue-bright)}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:#fff}
+  .btn.ghost:hover{border-color:var(--blue-bright)}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mist);font-size:.82rem}
+  .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  :is(a,button):focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+  @media(max-width:560px){
+    .content{padding:56px 0}
+    .brand{margin-bottom:32px}
+    .brand img{height:28px}
+    .wrap{padding:0 20px}
+    .actions{display:grid;gap:10px}
+    .actions .btn{width:100%;text-align:center}
+    footer{padding:24px 0}
+    .foot{display:grid;gap:8px}
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="wrap">
+    <div class="content">
+      <a class="brand" href="/" aria-label="CRAV home">
+        <img src="assets/crav-logo-white.png" alt="CRAV">
+      </a>
+      <p class="display code glitch" data-text="404">404</p>
+      <h1 class="display">This page went looking for a program and never came back.</h1>
+      <p class="sub">The page you're after doesn't exist, or has moved. Head back home to explore what CRAV is building.</p>
+      <div class="actions">
+        <a class="btn" href="/">Back to home</a>
+        <a class="btn ghost" href="/#main">See the programs</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>CRAV HQ, 20, 6th Cross Rd, Giringar Housing Colony, Giri Nagar Housing Society, Giri Nagar, Kadavanthra, Ernakulam, Kerala 682020</span>
+    <span class="mono">Creators crave more.</span>
+  </div>
+</footer>
+
+</body>
+</html>
