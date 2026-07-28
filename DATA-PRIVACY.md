@@ -32,4 +32,6 @@ If the inbox or Resend account is compromised, the Resend delivery log (sender, 
 
 ## Cross-border processing
 
-Resend (email delivery) and Google Fonts (font CDN, incidental — not a personal-data flow anywhere near as consequential as Resend) both process data outside India. DPDP currently permits this by default (no government blacklist in effect). Revisit if that changes.
+Resend (email delivery) processes form data outside India. DPDP currently permits this by default (no government blacklist in effect). Revisit if that changes.
+
+Fonts (Archivo, Space Grotesk, Space Mono) were previously loaded from Google Fonts, which sent every visitor's IP to Google on every page view. They're now self-hosted from `assets/fonts/` — that flow no longer exists.

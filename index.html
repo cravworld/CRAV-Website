@@ -25,9 +25,16 @@
 <meta name="twitter:title" content="CRAV — India's Creator-Tech Foundry">
 <meta name="twitter:description" content="India's first Creator-Tech Foundry. Turning creators and builders into creative technologists, IP owners and founders in animation, filmmaking, VFX and gaming.">
 <meta name="twitter:image" content="https://www.crav.world/crav-logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;1,800;1,900&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* Self-hosted (was Google Fonts) — avoids sending every visitor's IP to Google
+   on every page load. Only the latin subset is kept; this site's copy is
+   English-only. */
+@font-face{font-family:'Archivo';font-style:italic;font-weight:800;font-display:swap;src:url(assets/fonts/archivo-italic-800-900.woff2) format('woff2');}
+@font-face{font-family:'Archivo';font-style:italic;font-weight:900;font-display:swap;src:url(assets/fonts/archivo-italic-800-900.woff2) format('woff2');}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/archivo-400.woff2) format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/space-grotesk.woff2) format('woff2');}
+@font-face{font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/space-mono-400.woff2) format('woff2');}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
