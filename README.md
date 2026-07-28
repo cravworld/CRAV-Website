@@ -59,3 +59,4 @@ Example values are documented in `.env.example`.
 ## Notes
 
 - The live deploy entry point is `index.html` at the repository root.
+- See `DATA-PRIVACY.md` for what the forms collect, where it goes, and how to handle a deletion/access request.
