@@ -104,8 +104,19 @@ function isRateLimited(ip) {
 }
 
 function getClientIp(req) {
+  // x-vercel-forwarded-for is set by Vercel's edge itself and can't be
+  // spoofed by the client. x-forwarded-for, by contrast, is a client-
+  // suppliable header that Vercel appends the real IP to — the *last*
+  // entry is the trusted one, not the first.
+  const vercelForwarded = req.headers["x-vercel-forwarded-for"];
+  if (typeof vercelForwarded === "string" && vercelForwarded.length) {
+    return vercelForwarded.split(",")[0].trim();
+  }
   const forwarded = req.headers["x-forwarded-for"];
-  if (typeof forwarded === "string" && forwarded.length) return forwarded.split(",")[0].trim();
+  if (typeof forwarded === "string" && forwarded.length) {
+    const parts = forwarded.split(",").map((p) => p.trim());
+    return parts[parts.length - 1];
+  }
   return req.socket && req.socket.remoteAddress ? req.socket.remoteAddress : "unknown";
 }
 
@@ -235,15 +246,19 @@ module.exports = async function handler(req, res) {
 
     if (!resendResponse.ok) {
       const errorBody = await resendResponse.text();
-      throw new Error(errorBody || "Unable to send message.");
+      console.error("Resend API error:", resendResponse.status, errorBody);
+      res.statusCode = 502;
+      res.setHeader("Content-Type", "application/json");
+      return res.end(JSON.stringify({ error: "Unable to send message. Please try again later." }));
     }
 
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
     return res.end(JSON.stringify({ ok: true }));
   } catch (error) {
+    console.error("Contact form error:", error);
     res.statusCode = 400;
     res.setHeader("Content-Type", "application/json");
-    return res.end(JSON.stringify({ error: error.message || "Unable to send message." }));
+    return res.end(JSON.stringify({ error: "Unable to send message. Please check your details and try again." }));
   }
 }
