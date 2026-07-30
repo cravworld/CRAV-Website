@@ -52,7 +52,9 @@ The contact form requires these values in Vercel and in your local `.env.local` 
 - `CONTACT_FROM` - verified sender address in Resend
 - `RESEND_API_KEY` - Resend API key
 
-Example values are documented in `.env.example`.
+Example values are documented in `.env.example`. **Confirmed set in Vercel Production
+and Preview** (`vercel env ls`, checked 2026-07-30) — all three are present and
+encrypted; nothing further needed here before handoff.
 
 ## Deploy to Vercel
 
