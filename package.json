@@ -3,5 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "CRAV landing page ready for Vercel deployment.",
-  "dependencies": {}
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
 }
